@@ -1,10 +1,14 @@
 from flask import Flask, request, render_template
 import os, time
 
-app = Flask(__name__)
 UPLOAD_FOLDER = 'voice_input'
 LOG_FOLDER = 'logs'
+
+# 📂 Ordner sicherstellen
+os.makedirs(LOG_FOLDER, exist_ok=True)
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+
+app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -26,4 +30,3 @@ def index():
 
 if __name__ == '__main__':
     app.run(debug=True)
-
